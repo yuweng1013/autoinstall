@@ -1,0 +1,12 @@
+product: PowerMTA
+version: 4.0
+platform: linux-intel
+units: 9999
+options: evaluation
+licensee: MT
+serial: MT-12
+comment: Eval Lak
+issued: 2012-04-04
+expires: 2032-05-15
+copyright: Port25 Solutions, Inc. All Rights Reserved
+check: 1-GTgme5pJ7coDwVgRWPdfTmpPyF81GuAoG/Dvs9ehGL9PtnyxFl+VpkjTS8cbIU76FzHVqno5sfrCR/Vnh4evHA==
