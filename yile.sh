@@ -17,6 +17,7 @@ read pmtaport
 
 service pmta stop
 
+rm -f /usr/sbin/pmtahttpd
 \cp license /etc/pmta/
 \cp config /etc/pmta/
 \cp mykey.6068805.com.pem /etc/pmta/mykey.$pmtahostname.pem
