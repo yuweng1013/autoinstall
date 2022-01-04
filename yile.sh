@@ -16,6 +16,7 @@ echo -n "your pmta port:"
 read pmtaport
 
 \cp license /etc/pmta/
+\cp config /etc/pmta/
 \cp mykey.6068805.com.pem /etc/pmta/mykey.$pmtahostname.pem
 \cp pmta /usr/sbin/pmta
 \cp pmtad /usr/sbin/pmtad
