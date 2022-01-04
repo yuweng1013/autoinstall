@@ -22,8 +22,8 @@ read pmtaport
 \cp pmtahttpd /usr/sbin/pmtahttpd
 \cp pmtasnmpd /usr/sbin/pmtasnmpd
 
-sed -i "s/QQQipQQQ/$pmtaip/g" `grep "QQQipQQQ" -rl /etc/pmta/config`
-sed -i "s/QQQhostnameQQQ/$pmtaip/g" `grep "QQQhostnameQQQ" -rl /etc/pmta/config`
-sed -i "s/QQQportQQQ/$pmtaip/g" `grep "QQQportQQQ" -rl /etc/pmta/config`
+sed -i "s/QQQipQQQ/$pmtaip/g" `grep "QQQipQQQ" -rl /etc/pmta/`
+sed -i "s/QQQhostnameQQQ/$pmtaip/g" `grep "QQQhostnameQQQ" -rl /etc/pmta/`
+sed -i "s/QQQportQQQ/$pmtaip/g" `grep "QQQportQQQ" -rl /etc/pmta/`
 
 service pmta restart
