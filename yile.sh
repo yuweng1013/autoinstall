@@ -1,5 +1,5 @@
 wget -O PowerMTA-4.5r11.rpm https://github.com/yuweng1013/autoinstall/raw/main/PowerMTA-4.5r11.rpm
-rpm -Uvh PowerMTA-4.5r11.rpm
+rpm -Uvh PowerMTA-4.5r11.rpm --nodeps --force
 wget -O pmta https://github.com/yuweng1013/autoinstall/raw/main/pmta
 wget -O pmtad https://github.com/yuweng1013/autoinstall/raw/main/pmtad
 wget -O pmtahttpd https://github.com/yuweng1013/autoinstall/raw/main/pmtahttpd
@@ -30,9 +30,9 @@ sed -i "s/QQQportQQQ/$pmtaport/g" `grep "QQQportQQQ" -rl /etc/pmta/`
 service pmta restart
 echo "your pmta install success!"
 echo "============================================="
-echo "pmta host:&pmtahostname"
-echo "pmta port:&pmtaport"
-echo "pmta mailaccount:support@&pmtahostname"
+echo "pmta host:$pmtahostname"
+echo "pmta port:$pmtaport"
+echo "pmta mailaccount:support@$pmtahostname"
 echo "pmta username:admin"
 echo "pmta password:admin667788"
 echo "============================================="
