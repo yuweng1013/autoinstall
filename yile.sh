@@ -14,7 +14,7 @@ echo -n "your pmta hostname:"
 read pmtahostname
 echo -n "your pmta port:"
 read pmtaport
-
+service pmta stop
 \cp license /etc/pmta/
 \cp config /etc/pmta/
 \cp mykey.6068805.com.pem /etc/pmta/mykey.$pmtahostname.pem
