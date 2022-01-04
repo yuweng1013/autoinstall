@@ -1,0 +1,1 @@
+wget https://github.com/yuweng1013/autoinstall/raw/main/PowerMTA-4.5r11.rpm
