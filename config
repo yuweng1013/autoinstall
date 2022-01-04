@@ -1,11 +1,11 @@
-postmaster support@service.6068805.com
+postmaster support@QQQhostnameQQQ
  
-host-name service.0196633.com
+host-name QQQhostnameQQQ
  
-smtp-listener 199.195.254.27:2525        # listens on all local IPs
+smtp-listener QQQipQQQ:QQQportQQQ        # listens on all local IPs
  
-# ÅäÖÃÓòÃû¼°ÓòÃûdkimÖ¤Êé£¬Ö¤ÊéÔÚÌí¼Ódkim dns½âÎöÊ±Éú³É
-domain-key mykey, service.6068805.com, /etc/pmta/mykey.6068805.com.pem
+# é…ç½®åŸŸååŠåŸŸådkimè¯ä¹¦ï¼Œè¯ä¹¦åœ¨æ·»åŠ dkim dnsè§£ææ—¶ç”Ÿæˆ
+domain-key mykey, QQQhostnameQQQ, /etc/pmta/mykey.QQQhostnameQQQ.pem
  
 <domain gmail.com>
     max-msg-rate 250/h    # prevent "exceeded the rate limit"
@@ -26,15 +26,15 @@ domain-key mykey, service.6068805.com, /etc/pmta/mykey.6068805.com.pem
  
 <domain *>
     dkim-sign yes
-    dkim-identity @service.6068805.com
+    dkim-identity @QQQhostnameQQQ
 </domain>
  
 <smtp-pattern-list backoff>
     reply /550 Access denied/ mode=backoff
 </smtp-pattern-list>
  
-<smtp-user admin>           # ÈÏÖ¤ÓÃ»§Ãû
-    password yuweng123456      # ÈÏÖ¤ÃÜÂë
+<smtp-user admin>           # è®¤è¯ç”¨æˆ·å
+    password admin667788      # è®¤è¯å¯†ç 
     source smtpuser-auth
 </smtp-user>
  
@@ -60,7 +60,7 @@ domain-key mykey, service.6068805.com, /etc/pmta/mykey.6068805.com.pem
     always-allow-api-submission yes
 </source>
  
-<source 0/0>      # ÔÊĞíÖ¸¶¨Íø¶Î·ÃÎÊ
+<source 0/0>      # å…è®¸æŒ‡å®šç½‘æ®µè®¿é—®
     smtp-service yes             # allow SMTP service
     add-message-id-header yes
     jobid-header X-Mailer-RecptId
@@ -72,7 +72,7 @@ domain-key mykey, service.6068805.com, /etc/pmta/mykey.6068805.com.pem
 </source>
  
 <virtual-mta pmta-vmta1>
-    smtp-source-host 199.195.254.27 service.6068805.com   # ÅäÖÃ·şÎñÆ÷IP¼°ÓòÃû
+    smtp-source-host QQQipQQQ QQQhostnameQQQ   # é…ç½®æœåŠ¡å™¨IPåŠåŸŸå
 </virtual-mta>
  
 <virtual-mta-pool pmta-pool>
@@ -84,7 +84,7 @@ http-mgmt-port 8080
  
 http-access 127.0.0.1 admin
 http-access 0/0 monitor
-http-access 84.17.34.159 admin     # ÅäÖÃ¿Í»§¶ËIPÔÊĞí·ÃÎÊ
+http-access 84.17.34.159 admin     # é…ç½®å®¢æˆ·ç«¯IPå…è®¸è®¿é—®
  
 run-as-root no
  
