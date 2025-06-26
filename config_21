@@ -1,0 +1,101 @@
+postmaster support@QQQhostnameQQQ
+ 
+host-name QQQhostnameQQQ
+ 
+smtp-listener QQQipQQQ:QQQportQQQ        # listens on all local IPs
+ 
+# 配置域名及域名dkim证书，证书在添加dkim dns解析时生成
+domain-key mykey, QQQhostnameQQQ, /etc/pmta/mykey.QQQhostnameQQQ.pem
+ 
+<domain gmail.com>
+    max-msg-rate 250/h    # prevent "exceeded the rate limit"
+</domain>
+ 
+<domain hotmail.com>
+    max-msg-rate 250/h    # prevent "exceeded the rate limit"
+</domain>
+ 
+<domain 163.com>
+    max-msg-rate 250/h    # prevent "exceeded the rate limit"
+</domain>
+ 
+<domain qq.com>
+    max-msg-rate 250/h    # prevent "exceeded the rate limit"
+    smtp-pattern-list backoff
+</domain>
+ 
+<domain *>
+    dkim-sign yes
+    dkim-identity @QQQhostnameQQQ
+</domain>
+ 
+<smtp-pattern-list backoff>
+    reply /550 Access denied/ mode=backoff
+</smtp-pattern-list>
+ 
+<smtp-user admin>           # 认证用户名
+    password admin667788      # 认证密码
+    source smtpuser-auth
+</smtp-user>
+ 
+<source smtpuser-auth>
+    smtp-service yes
+    always-allow-relaying yes
+    require-auth true
+    process-x-virtual-mta yes
+    default-virtual-mta pmta-pool
+    always-allow-api-submission yes
+    remove-received-headers true
+    add-received-header false
+    #hide-message-source true
+</source>
+ 
+<source 127.0.0.1>
+    always-allow-relaying yes   # allow feeding from 127.0.0.1
+    process-x-virtual-mta yes   # allow selection of a virtual MTA
+    smtp-service yes            # allow SMTP service
+    max-message-size unlimited
+    add-message-id-header no
+    jobid-header X-Mailer-RecptId
+    always-allow-api-submission yes
+</source>
+ 
+<source 0/0>      # 允许指定网段访问
+    smtp-service yes             # allow SMTP service
+    add-message-id-header no
+    jobid-header X-Mailer-RecptId
+    always-allow-relaying yes   
+    allow-unencrypted-plain-auth yes
+    log-connections no
+    log-commands    no           # WARNING: verbose!
+    log-data        no           # WARNING: even more verbose!
+</source>
+ 
+<virtual-mta pmta-vmta1>
+    smtp-source-host QQQipQQQ QQQhostnameQQQ   # 配置服务器IP及域名
+</virtual-mta>
+ 
+<virtual-mta-pool pmta-pool>
+    virtual-mta pmta-vmta1
+</virtual-mta-pool>
+ 
+ 
+http-mgmt-port 8080
+ 
+http-access 127.0.0.1 admin
+http-access 0/0 monitor
+http-access 84.17.34.159 admin     # 配置客户端IP允许访问
+ 
+run-as-root no
+ 
+log-file /var/log/pmta/pmta.log   # logrotate is used for rotation
+ 
+<acct-file /var/log/pmta/acct.csv>
+    move-interval 5m
+    max-size 50M
+    delete-after 8d
+</acct-file>
+ 
+<spool /var/spool/pmta>
+    deliver-only no
+</spool>
